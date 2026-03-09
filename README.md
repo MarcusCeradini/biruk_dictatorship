@@ -83,15 +83,6 @@ Play as Biruk. Hire goons. Defeat the Collins clones. Become the dictator. Or di
 
 ## Technical Details
 
-### File Structure
-```
-2048/
-├── index.html          # Main game HTML
-├── style.css           # Styling and animations
-├── script.js           # Game logic and mechanics
-└── README.md           # This file
-```
-
 ### Browser Compatibility
 - **Chrome**: Full support
 - **Firefox**: Full support  
@@ -116,7 +107,6 @@ Play as Biruk. Hire goons. Defeat the Collins clones. Become the dictator. Or di
 **Created by**: Biruk's Dictatorship Development Team  
 **Enemy Design**: Quint's Secret Laboratory  
 **Story**: Biruk's Manifesto  
-**Engine**: Custom JavaScript Game Engine  
 
 ---
 
