@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biruk Dictatorship</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Start Screen -->
+    <div class="start-screen" id="start-screen">
+        <div class="story-container">
+            <h1 class="game-title">🐀Biruk Dictatorship🐀</h1>
+            
+            <div class="story-text">
+                <p>Long ago, the world was peaceful… mostly because nobody important was paying attention.</p>
+                
+                <p>Then came Biruk.</p>
+                
+                <p>Biruk had a dream.<br>
+                Not a normal dream like "be successful" or "help people."<br>
+                No. Biruk's dream was simple:</p>
+                
+                <p class="highlight">Become the world's greatest dictator.</p>
+                
+                <p>Armed with nothing but determination, questionable leadership skills, and a wallet full of cash, Biruk began hiring goons from every shady alley, underground gym, and suspicious job listing on the internet.</p>
+                
+                <p>The plan was perfect…<br>
+                until Quint showed up.</p>
+                
+                <p>Quint, Biruk's sworn enemy, had been preparing for years.<br>
+                Hidden deep within a secret laboratory, Quint built an unstoppable army…</p>
+                
+                <p class="highlight">Thousands of cloned versions of Phil Collins.</p>
+                
+                <p>Now the world faces its greatest conflict:</p>
+                
+                <p>A rising dictator with an army of goons…<br>
+                vs.<br>
+                An unstoppable force of singing, drumming Phil Collins clones.</p>
+                
+                <p class="highlight">The battle for world domination begins now.</p>
+                
+                <p>Play as Biruk.<br>
+                Hire goons.<br>
+                Defeat the Collins clones.<br>
+                Become the dictator.</p>
+                
+                <p class="final-line">Or die trying. 💥</p>
+            </div>
+            
+            <button class="start-button" id="start-game-btn">BEGIN YOUR REIGN</button>
+        </div>
+    </div>
+    
+    <!-- Game Screen -->
+    <div class="game-container" id="game-container" style="display: none;">
+        <header class="game-header">
+            <h1>🐀 Biruk Dictatorship 🐀</h1>
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-label">Health:</span>
+                    <span id="health">100</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">XP:</span>
+                    <span id="xp">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Level:</span>
+                    <span id="level">1</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Family Size:</span>
+                    <span id="family-size">1</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Cash:</span>
+                    <span id="cash">$0</span>
+                </div>
+            </div>
+        </header>
+        
+        <main class="game-main">
+            <div class="game-area" id="game-area">
+                <div class="player-rat" id="player">
+                    <div class="rat-face">🐭</div>
+                    <div class="weapon">🔫</div>
+                </div>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="upgrades">
+                    <h2>Mafia Upgrades</h2>
+                    <div class="upgrade-item">
+                        <h3>Hire Goon</h3>
+                        <p>Add a rat to your family</p>
+                        <div class="cost">Cost: $100</div>
+                        <button class="upgrade-btn" data-upgrade="goon">Hire</button>
+                    </div>
+                    <div class="upgrade-item">
+                        <h3>Better Weapon</h3>
+                        <p>Increase damage</p>
+                        <div class="cost">Cost: $250</div>
+                        <button class="upgrade-btn" data-upgrade="weapon">Upgrade</button>
+                    </div>
+                    <div class="upgrade-item">
+                        <h3>Speed Boost</h3>
+                        <p>Move faster</p>
+                        <div class="cost">Cost: $150</div>
+                        <button class="upgrade-btn" data-upgrade="speed">Upgrade</button>
+                    </div>
+                    <div class="upgrade-item">
+                        <h3>Fire Rate</h3>
+                        <p>Shoot faster</p>
+                        <div class="cost">Cost: $200</div>
+                        <button class="upgrade-btn" data-upgrade="firerate">Upgrade</button>
+                    </div>
+                </div>
+                
+                <div class="family-list">
+                    <h2>Your Family</h2>
+                    <div id="family-members">
+                        <div class="family-member">
+                            <span class="member-name">You (Boss)</span>
+                            <span class="member-level">Lv.1</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+        
+        <div class="game-over" id="game-over" style="display: none;">
+            <div class="game-over-content">
+                <h2>Game Over!</h2>
+                <p>Your dictatorship has fallen!</p>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <button id="restart-btn">Start New Regime</button>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <p><strong>How to Play:</strong> Use WASD or Arrow Keys to move. Click to shoot Phil Collins clones. Gain XP and cash to upgrade your dictatorship!</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
