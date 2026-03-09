@@ -68,6 +68,14 @@ class RatMafiaGame {
         this.enemySpawnTimer = 0;
         this.enemySpawnInterval = 2000;
         
+        // Time-based difficulty scaling
+        this.gameStartTime = Date.now();
+        this.timeDifficultyMultiplier = 1;
+        
+        // Load sound effects
+        this.enemyDeathSound = new Audio('I Don\'t Care Anymore (2016 Remaster) (mp3cut.net).mp3');
+        this.enemyDeathSound.volume = 0.3; // Set volume to 30%
+        
         this.init();
     }
     
@@ -131,6 +139,7 @@ class RatMafiaGame {
         this.updateParticles();
         this.checkCollisions();
         this.spawnEnemies();
+        this.updateTimeDifficulty();
         
         requestAnimationFrame(() => this.gameLoop());
     }
@@ -250,7 +259,20 @@ class RatMafiaGame {
     spawnEnemies() {
         this.enemySpawnTimer += 16;
         if (this.enemySpawnTimer >= this.enemySpawnInterval) {
-            this.spawnEnemy();
+            // Calculate how many enemies to spawn based on level milestones
+            const levelTier = Math.floor(this.playerStats.level / 5); // How many 5-level milestones passed
+            const baseEnemies = 1;
+            const additionalEnemies = levelTier * 2; // Add 2 enemies per 5 levels
+            const enemiesToSpawn = baseEnemies + additionalEnemies;
+            
+            // Spawn multiple enemies
+            for (let i = 0; i < enemiesToSpawn; i++) {
+                // Add small delay between spawns to prevent them all appearing at exact same spot
+                setTimeout(() => {
+                    this.spawnEnemy();
+                }, i * 100); // 100ms delay between each enemy spawn
+            }
+            
             this.enemySpawnTimer = 0;
             
             // Spawn rate based on player level: 2 seconds - 0.1 seconds per level
@@ -272,12 +294,19 @@ class RatMafiaGame {
             case 3: x = -50; y = Math.random() * rect.height; break;
         }
         
+        // Apply time-based difficulty scaling
+        const baseHealth = 30 + (this.playerStats.level * 5);
+        const scaledHealth = Math.floor(baseHealth * this.timeDifficultyMultiplier);
+        const baseValue = 10 + (this.playerStats.level * 2);
+        const scaledValue = Math.floor(baseValue * this.timeDifficultyMultiplier);
+        
         const enemy = {
             x: x,
             y: y,
-            health: 30 + (this.playerStats.level * 5),
-            maxHealth: 30 + (this.playerStats.level * 5),
-            value: 10 + (this.playerStats.level * 2),
+            health: scaledHealth,
+            maxHealth: scaledHealth,
+            value: scaledValue,
+            damage: Math.floor(10 * this.timeDifficultyMultiplier), // Enemy damage also scales
             element: this.createEnemyElement(x, y)
         };
         
@@ -322,7 +351,7 @@ class RatMafiaGame {
             // Only attack if close enough, don't die on collision
             if (distance < 35) {
                 if (!this.playerStats.invulnerable && this.playerStats.damageCooldown <= 0) {
-                    this.takeDamage(10);
+                    this.takeDamage(enemy.damage || 10); // Use enemy's scaled damage or fallback to 10
                     this.playerStats.damageCooldown = 1500; // 1.5 second cooldown between hits
                 }
                 // Don't remove enemy - keep them alive to be shot
@@ -432,6 +461,7 @@ class RatMafiaGame {
                         this.createXPPopup(enemy.x + 25, enemy.y + 25, enemy.value);
                         this.gainXP(enemy.value);
                         this.gainCash(enemy.value * 2);
+                        this.playEnemyDeathSound();
                         enemy.element.remove();
                         this.enemies.splice(enemyIndex, 1);
                     }
@@ -457,6 +487,7 @@ class RatMafiaGame {
                         this.createXPPopup(enemy.x + 25, enemy.y + 25, Math.floor(enemy.value * 0.5));
                         this.gainXP(Math.floor(enemy.value * 0.5));
                         this.gainCash(enemy.value);
+                        this.playEnemyDeathSound();
                         enemy.element.remove();
                         this.enemies.splice(enemyIndex, 1);
                     }
@@ -490,6 +521,23 @@ class RatMafiaGame {
         this.gameArea.appendChild(effect);
         
         setTimeout(() => effect.remove(), 300);
+    }
+    
+    playEnemyDeathSound() {
+        // Play the enemy death sound with error handling
+        this.enemyDeathSound.currentTime = 0; // Reset to start for rapid playback
+        this.enemyDeathSound.play().catch(error => {
+            console.log('Could not play enemy death sound:', error);
+        });
+    }
+    
+    updateTimeDifficulty() {
+        // Calculate time elapsed in seconds
+        const timeElapsed = (Date.now() - this.gameStartTime) / 1000;
+        
+        // Increase difficulty by 10% every 30 seconds
+        // Formula: 1 + (timeElapsed / 30) * 0.1
+        this.timeDifficultyMultiplier = 1 + (Math.floor(timeElapsed / 30) * 0.1);
     }
     
     createXPPopup(x, y, value) {
