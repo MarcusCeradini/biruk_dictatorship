@@ -100,7 +100,7 @@ class RatMafiaGame {
         const startButton = document.getElementById('start-game-btn');
         
         if (gameTitle) {
-            gameTitle.textContent = this.japaneseText.title;
+            gameTitle.textContent = this.japaneseStory.title;
         }
         
         if (startButton) {
@@ -187,7 +187,7 @@ class RatMafiaGame {
         const gameTitle = document.querySelector('.game-title');
         
         if (this.japaneseMode && storyText && gameTitle) {
-            gameTitle.textContent = this.japaneseStory.title;
+            gameTitle.textContent = "🐀ビルク独裁政権🐀";
             
             let htmlContent = '';
             this.japaneseStory.paragraphs.forEach((paragraph, index) => {
