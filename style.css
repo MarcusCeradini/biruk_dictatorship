@@ -236,6 +236,67 @@ body {
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
+.biruk-sprite {
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* Default frame: Adobe Express file 1 (idle facing forward) */
+    background-image: url('Adobe Express - file.png');
+}
+
+/* Animation frames using Adobe Express files - correct direction mapping */
+.biruk-sprite.idle-down {
+    background-image: url('Adobe Express - file4.png');
+}
+
+.biruk-sprite.idle-up {
+    background-image: url('Adobe Express - file3.png');
+}
+
+.biruk-sprite.idle-left {
+    background-image: url('Adobe Express - file2.png');
+}
+
+.biruk-sprite.idle-right {
+    background-image: url('Adobe Express - file.png');
+}
+
+/* Walking animation - use multiple frames for smoother movement */
+.biruk-sprite.walk-down-1 {
+    background-image: url('Adobe Express - file4.png');
+}
+
+.biruk-sprite.walk-down-2 {
+    background-image: url('Adobe Express - file5.png');
+}
+
+.biruk-sprite.walk-up-1 {
+    background-image: url('Adobe Express - file3.png');
+}
+
+.biruk-sprite.walk-up-2 {
+    background-image: url('Adobe Express - file6.png');
+}
+
+.biruk-sprite.walk-left-1 {
+    background-image: url('Adobe Express - file2.png');
+}
+
+.biruk-sprite.walk-left-2 {
+    background-image: url('Adobe Express - file9.png');
+}
+
+.biruk-sprite.walk-right-1 {
+    background-image: url('Adobe Express - file.png');
+}
+
+.biruk-sprite.walk-right-2 {
+    background-image: url('Adobe Express - file8.png');
+}
+
 .weapon {
     position: absolute;
     top: 15px;

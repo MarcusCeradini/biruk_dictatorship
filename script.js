@@ -221,10 +221,10 @@ class RatMafiaGame {
         const centerY = (rect.height - 60) / 2; // 60 is player height
         
         this.playerStats = {
-            x: centerX,
-            y: centerY,
-            prevX: centerX,
-            prevY: centerY,
+            x: 100,
+            y: 100,
+            prevX: 100,
+            prevY: 100,
             speed: 5,
             damage: 10,
             fireRate: 500,
@@ -240,7 +240,11 @@ class RatMafiaGame {
             damageCooldown: 0,
             criticalChance: 0,
             lifestealAmount: 0,
-            multishotCount: 1
+            multishotCount: 1,
+            direction: 'down', // Track player direction for sprite orientation
+            isMoving: false,
+            animationFrame: 0, // Current animation frame
+            animationTimer: 0 // Timer for frame switching
         };
         
         this.familyMembers = [];
@@ -398,6 +402,18 @@ class RatMafiaGame {
         if (this.keys['a'] || this.keys['arrowleft']) dx = -this.playerStats.speed;
         if (this.keys['d'] || this.keys['arrowright']) dx = this.playerStats.speed;
         
+        // Track if player is moving and update direction
+        this.playerStats.isMoving = (dx !== 0 || dy !== 0);
+        
+        // Update direction based on movement
+        if (this.playerStats.isMoving) {
+            if (Math.abs(dy) > Math.abs(dx)) {
+                this.playerStats.direction = dy > 0 ? 'down' : 'up';
+            } else {
+                this.playerStats.direction = dx > 0 ? 'right' : 'left';
+            }
+        }
+        
         // Normalize diagonal movement to prevent faster diagonal speed
         if (dx !== 0 && dy !== 0) {
             const factor = 0.707; // 1/sqrt(2) for normalized diagonal movement
@@ -415,6 +431,9 @@ class RatMafiaGame {
         
         this.player.style.left = this.playerStats.x + 'px';
         this.player.style.top = this.playerStats.y + 'px';
+        
+        // Update sprite orientation based on direction
+        this.updatePlayerSprite();
         
         // Update invulnerability
         if (this.playerStats.invulnerable) {
@@ -440,6 +459,95 @@ class RatMafiaGame {
         this.playerShootSound.play().catch(error => {
             console.log('Could not play player shoot sound:', error);
         });
+    }
+    
+    updatePlayerSprite() {
+        const ratFace = this.player.querySelector('.rat-face');
+        const birukSprite = ratFace.querySelector('.biruk-sprite');
+        
+        if (!birukSprite) return;
+        
+        // Update animation timer
+        this.playerStats.animationTimer += 16; // Assuming 60 FPS (16ms per frame)
+        
+        // Determine frame based on movement state and direction
+        let frameClass = '';
+        
+        if (this.playerStats.isMoving) {
+            // Walking animation - switch frames every 100ms for smoother movement
+            if (this.playerStats.animationTimer >= 100) {
+                this.playerStats.animationFrame = (this.playerStats.animationFrame + 1) % 2;
+                this.playerStats.animationTimer = 0;
+            }
+            
+            // Use appropriate walking frame based on direction
+            switch(this.playerStats.direction) {
+                case 'down':
+                    frameClass = this.playerStats.animationFrame === 0 ? 'walk-down-1' : 'walk-down-2';
+                    break;
+                case 'up':
+                    frameClass = this.playerStats.animationFrame === 0 ? 'walk-up-1' : 'walk-up-2';
+                    break;
+                case 'left':
+                    frameClass = this.playerStats.animationFrame === 0 ? 'walk-left-1' : 'walk-left-2';
+                    break;
+                case 'right':
+                    frameClass = this.playerStats.animationFrame === 0 ? 'walk-right-1' : 'walk-right-2';
+                    break;
+            }
+        } else {
+            // Idle animation - reset to first frame
+            this.playerStats.animationFrame = 0;
+            this.playerStats.animationTimer = 0;
+            
+            // Use appropriate idle frame based on direction
+            switch(this.playerStats.direction) {
+                case 'down':
+                    frameClass = 'idle-down';
+                    break;
+                case 'up':
+                    frameClass = 'idle-up';
+                    break;
+                case 'left':
+                    frameClass = 'idle-left';
+                    break;
+                case 'right':
+                    frameClass = 'idle-right';
+                    break;
+            }
+        }
+        
+        // Remove all sprite classes and add the current one
+        birukSprite.className = 'biruk-sprite ' + frameClass;
+        
+        // Update gun rotation based on player direction
+        const weapon = this.player.querySelector('.weapon');
+        if (weapon) {
+            switch(this.playerStats.direction) {
+                case 'up':
+                    weapon.style.transform = 'rotate(90deg)';
+                    weapon.style.top = '5px';
+                    weapon.style.right = '20px';
+                    break;
+                case 'down':
+                    weapon.style.transform = 'rotate(-90deg)';
+                    weapon.style.top = '35px';
+                    weapon.style.right = '20px';
+                    break;
+                case 'left':
+                    weapon.style.transform = 'rotate(0deg)';
+                    weapon.style.top = '15px';
+                    weapon.style.right = '35px';
+                    break;
+                case 'right':
+                    weapon.style.transform = 'rotate(180deg)';
+                    weapon.style.transform = 'scaleY(1)';
+                    weapon.style.transform = 'scaleX(-1)';
+                    weapon.style.top = '15px';
+                    weapon.style.right = '-10px';
+                    break;
+            }
+        }
     }
     
     shoot(e) {
