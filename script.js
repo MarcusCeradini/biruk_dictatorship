@@ -215,11 +215,16 @@ class RatMafiaGame {
         this.gameArea = document.getElementById('game-area');
         this.player = document.getElementById('player');
         
+        // Center player in the middle of the battlefield
+        const rect = this.gameArea.getBoundingClientRect();
+        const centerX = (rect.width - 60) / 2; // 60 is player width
+        const centerY = (rect.height - 60) / 2; // 60 is player height
+        
         this.playerStats = {
-            x: 100,
-            y: 100,
-            prevX: 100,
-            prevY: 100,
+            x: centerX,
+            y: centerY,
+            prevX: centerX,
+            prevY: centerY,
             speed: 5,
             damage: 10,
             fireRate: 500,
