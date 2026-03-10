@@ -36,11 +36,22 @@ Play as Biruk. Hire goons. Defeat the Collins clones. Become the dictator. Or di
 - **Damage Cooldown**: 1.5 second invulnerability after taking damage
 - **Invulnerability Frames**: Visual flashing when damaged
 - **Enemy AI**: Phil Collins clones hunt you down relentlessly
+- **Centered Start**: Player begins in the middle of the battlefield
+
+### Enemy Types & Progressive Spawning
+- **Regular Enemies** (90% at start): Standard Phil Collins clones with balanced stats
+- **Shooter Enemies** (5% at start → 35% max): Attack from distance with projectiles
+- **Tank Enemies** (5% at start → 25% max): Higher health and damage, slower movement
+- **Progressive Difficulty**: Special enemy chances increase over 2 minutes
+- **Visual Distinction**: Different border colors and sizes for each enemy type
+- **Slower Spawning**: 5-second initial spawn rate for easier beginner experience
 
 ### Combat System
 - **Shooting Mechanics**: Click to shoot bullets at enemies
-- **Enemy Resistance**: Only bullets can defeat enemies (no collision kills)
+- **Cartoon Gun SFX**: Satisfying sound effects for player shots
+- **Enemy Projectiles**: Shooter enemies fire bullets at the player
 - **Smart Enemies**: Move faster when you're stationary
+- **No Collision Kills**: Only bullets can defeat enemies
 
 ### Progression System
 - **Experience Points**: Gain XP by defeating enemies
@@ -51,22 +62,35 @@ Play as Biruk. Hire goons. Defeat the Collins clones. Become the dictator. Or di
 - **Hire Goons**: Add automated turret helpers to your family
 - **Turret AI**: Goons automatically shoot at nearby enemies
 - **Strategic Defense**: Position goons for maximum coverage
+- **Visual Update**: Goons now use mafia_asset.jpg with transparent background
 
 ### Difficulty Scaling System
-- **Level Milestones**: Every 5 levels, enemy spawn count increases dramatically
-  - Levels 1-4: 1 enemy per wave
-  - Levels 5-9: 3 enemies per wave  
-  - Levels 10-14: 5 enemies per wave
-  - And so on (+2 enemies each 5-level milestone)
+- **Level Milestones**: Every 10 levels, enemy spawn count increases
+  - Levels 1-9: 1 enemy per wave
+  - Levels 10-19: 2 enemies per wave  
+  - Levels 20-29: 3 enemies per wave
+  - And so on (+1 enemy each 10-level milestone, max 5)
 - **Time-Based Difficulty**: Enemies become 10% stronger every 30 seconds
-  - Both health and damage scale over time
-  - Reward values scale proportionally
-- **Progressive Challenge**: Multiple difficulty layers create escalating challenge
+- **Slower Progression**: More gradual spawn rate increases (0.03 seconds per level)
 
 ### Audio Features
 - **Enemy Death Sounds**: Phil Collins "I Don't Care Anymore" plays on enemy defeat
-- **Volume Control**: Balanced at 30% for gameplay comfort
-- **Rapid Playback**: Supports multiple quick enemy deaths
+- **Player Shoot Sounds**: Cartoon gun SFX for satisfying combat feedback
+- **Volume Control**: Balanced audio levels for gameplay comfort
+
+### Visual Features
+- **Player Character**: Biruk's LinkedIn photo as the player avatar
+- **Battlefield Background**: Capitol building setting for thematic dictatorship takeover
+- **Enemy Faces**: Real images of Phil Collins clones
+- **Visual Distinction**: Border colors differentiate enemy types (no boxes)
+- **Smooth Animations**: Bullet trails, hit effects, movement
+- **Health Indicators**: Color-coded health display (Green/Yellow/Red)
+- **XP Popups**: Visual feedback for defeated enemies
+- **No Text Selection**: Prevents highlighting in game area for better UX
+
+### Easter Eggs
+- **_____**: Do you know the konami code? At the start enter it besides the last input in the 
+sequence to unlock a secret.
 
 ### Upgrades Shop
 1. **Hire Goon** ($100+) - Adds automated turret to your family (max 10)
@@ -84,48 +108,41 @@ Play as Biruk. Hire goons. Defeat the Collins clones. Become the dictator. Or di
 - **Strategic Placement**: Position goons for optimal battlefield coverage
 - **Upgrade Costs**: Scales with goon level
 
-### Visual Features
-- **Phil Collins Faces**: Real images of the enemy clones
-- **Smooth Animations**: Bullet trails, hit effects, movement
-- **Health Indicators**: Color-coded health display (Green/Yellow/Red)
-- **XP Popups**: Visual feedback for defeated enemies
-- **Mafia Theme**: Dark, atmospheric dictatorship aesthetic
-
-### Easter Eggs
-- **_____**: Do you know the konami code? At the start enter it besides the last input in the sequence to unlock a secret.
-
 ## Game Strategy
 
-### Early Game (Levels 1-4)
+### Early Game (Levels 1-9)
 - Focus on survival and earning initial cash
 - Hire your first goon as soon as possible for defensive coverage
 - Keep moving to avoid enemy swarms
 - Prioritize weapon upgrades for faster kills
+- Learn to identify different enemy types and their behaviors
 
-### Mid Game (Levels 5-14)
-- **Critical Milestone**: Level 5 brings 3x enemy spawns - be prepared!
+### Mid Game (Levels 10-19)
+- **Critical Milestone**: Level 10 brings 2x enemy spawns
 - Build a balanced team of goons (2-4 recommended)
 - Invest in health upgrades to survive increased damage
+- Watch out for shooter enemies - dodge their projectiles
 - Consider critical hits or lifesteal for sustained combat
-- Use goons as defensive perimeter against increased enemy count
 
-### Late Game (Levels 15+)
-- **Enemy Waves**: Face 5+ enemies per spawn wave
+### Late Game (Levels 20+)
+- **Enemy Waves**: Face 3+ enemies per spawn wave
 - Time-based difficulty makes enemies significantly stronger
 - Multi-shot becomes essential for crowd control
+- Tank enemies require more damage to defeat
 - Max out health and damage upgrades
 - Position goons strategically for maximum coverage
-- Balance offensive upgrades with survivability
 
 ### Advanced Tactics
-1. **Timing is Everything**: Complete levels quickly before time-scaling makes enemies too strong
-2. **Economy Management**: Save cash for level milestones when difficulty spikes
-3. **Goon Networks**: Create overlapping fields of fire with multiple goons
-4. **Upgrade Synergy**: Combine lifesteal with multishot for maximum healing
-5. **Critical Mass**: Stack critical hit chance with damage upgrades for burst damage
+1. **Enemy Prioritization**: Focus on shooter enemies first to avoid projectiles
+2. **Tank Management**: Save ammo for tank enemies with higher health
+3. **Timing is Everything**: Complete levels quickly before time-scaling makes enemies too strong
+4. **Economy Management**: Save cash for level milestones when difficulty spikes
+5. **Goon Networks**: Create overlapping fields of fire with multiple goons
+6. **Upgrade Synergy**: Combine lifesteal with multishot for maximum healing
+7. **Critical Mass**: Stack critical hit chance with damage upgrades for burst damage
+8. **Konami Code**: Discover the hidden Japanese mode for a unique experience
 
 ## Technical Details
-1. **stuck to screen glitch**: There is a glitch where the player gets stuck to side of screen or gets contantly pulled to the side of the screen.
 
 ### Browser Compatibility
 - **Chrome**: Full support
@@ -137,27 +154,33 @@ Play as Biruk. Hire goons. Defeat the Collins clones. Become the dictator. Or di
 - Runs at 60 FPS on modern browsers
 - Efficient collision detection
 - Optimized particle effects
+- No text selection in game area prevents UI interference
 
 ## Tips & Tricks
 
 1. **Never Stop Moving**: Stationary targets take more damage from enemies
-2. **Goon Placement**: Hire goons early and spread them for maximum coverage
-3. **Economy Management**: Balance between upgrades and hiring, save for level milestones
-4. **Enemy Patterns**: Learn Phil Collins movement behaviors and spawn timing
-5. **Health Management**: Use invulnerability frames strategically
-6. **Level Milestones**: Prepare for dramatic difficulty spikes at levels 5, 10, 15...
-7. **Time Pressure**: Complete objectives quickly - enemies get 10% stronger every 30 seconds
-8. **Sound Cues**: Listen for enemy death sounds to confirm kills in chaotic battles
-9. **Upgrade Priority**: Health → Weapon → Goons → Special abilities for balanced progression
-10. **Multi-shot Mastery**: Use spread patterns to hit multiple enemies in tight groups
-11. **Critical Timing**: Time your shots for maximum effectiveness against enemy waves
+2. **Enemy Recognition**: Learn visual cues for different enemy types
+3. **Goon Placement**: Hire goons early and spread them for maximum coverage
+4. **Economy Management**: Balance between upgrades and hiring, save for level milestones
+5. **Enemy Patterns**: Learn Phil Collins movement behaviors and spawn timing
+6. **Health Management**: Use invulnerability frames strategically
+7. **Level Milestones**: Prepare for difficulty spikes at levels 10, 20, 30...
+8. **Time Pressure**: Complete objectives quickly - enemies get 10% stronger every 30 seconds
+9. **Sound Cues**: Listen for enemy death and shoot sounds in chaotic battles
+10. **Upgrade Priority**: Health → Weapon → Goons → Special abilities for balanced progression
+11. **Multi-shot Mastery**: Use spread patterns to hit multiple enemies in tight groups
 12. **Lifesteal Synergy**: Combine with multishot for massive healing in crowded situations
+13. **Projectile Dodging**: Learn to dodge shooter enemy bullets for survival
+14. **Secret Discovery**: Try classic gaming codes on the start screen...
 
 ## Credits
 
 **Created by**: Biruk's Dictatorship Development Team  
 **Enemy Design**: Quint's Secret Laboratory  
 **Story**: Biruk's Manifesto  
+**Player Character**: Biruk's LinkedIn Professional Photo  
+**Battlefield**: United States Capitol Building  
+**Audio**: Cartoon Gun Sound Effects  
 
 ---
 *統計メロで眠らないで*
