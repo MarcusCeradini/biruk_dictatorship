@@ -558,7 +558,6 @@ class RatMafiaGame {
                     break;
                 case 'right':
                     weapon.style.transform = 'rotate(180deg)';
-                    weapon.style.transform = 'scaleY(1)';
                     weapon.style.transform = 'scaleX(-1)';
                     weapon.style.top = '15px';
                     weapon.style.right = '-10px';
@@ -582,8 +581,17 @@ class RatMafiaGame {
         
         const baseAngle = Math.atan2(mouseY - (this.playerStats.y + 30), mouseX - (this.playerStats.x + 30));
         
-        // Multi-shot: create multiple bullets in a spread pattern
-        const bulletCount = this.playerStats.multishotCount;
+        // Multi-shot: chance to shoot multiple bullets
+        let bulletCount = 1;
+        if (this.playerStats.multishotCount > 0) {
+            // Each multishot level gives 5% chance for additional bullet
+            for (let i = 0; i < this.playerStats.multishotCount; i++) {
+                if (Math.random() < 0.05) { // 5% chance per level
+                    bulletCount++;
+                }
+            }
+        }
+        
         const spreadAngle = 0.2; // Spread angle between bullets
         
         for (let i = 0; i < bulletCount; i++) {

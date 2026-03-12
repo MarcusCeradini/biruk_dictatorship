@@ -1,3 +1,19 @@
+/*
+==========================================
+Biruk Dictatorship - Stylesheet
+==========================================
+
+Recent Updates:
+- Enhanced game area layout (smaller header, larger stat boxes)
+- Power-up system with glowing orbs and animations
+- Chance-based multishot system (5% per level)
+- Progressive enemy difficulty scaling
+- Optimized UI for better gameplay experience
+
+Last Updated: March 2026
+==========================================
+*/
+
 /* Retro Arcade Styling */
 * {
     image-rendering: pixelated;
@@ -43,7 +59,7 @@ body {
 }
 
 .game-title {
-    font-size: 3.5em;
+    font-size: 4em;
     margin-bottom: 30px;
     background: linear-gradient(45deg, #ffd700, #ffed4e);
     -webkit-background-clip: text;
@@ -125,16 +141,16 @@ body {
 
 .game-header {
     background: #000;
-    padding: 15px 20px;
+    padding: 8px 15px;
     border-bottom: 4px solid #ff00ff;
     box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
 }
 
 .game-header h1 {
     text-align: center;
-    font-size: 2em;
+    font-size: 2.25em;
     text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: #00ffff;
     animation: neonFlicker 1.5s infinite alternate;
 }
@@ -148,23 +164,25 @@ body {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px;
 }
 
 .stat {
     background: #000;
-    padding: 10px 15px;
+    padding: 15px 20px;
     border: 2px solid #00ff00;
-    font-weight: bold;
-    font-size: 10px;
-    color: #00ff00;
-    text-shadow: 0 0 5px #00ff00;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    border-radius: 5px;
+    text-align: center;
+    min-width: 120px;
+    font-size: 1.1em;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
 .stat-label {
-    color: #ffff00;
-    text-shadow: 0 0 5px #ffff00;
+    color: #ffd700;
+    font-size: 0.9em;
+    margin-bottom: 5px;
 }
 
 #health {

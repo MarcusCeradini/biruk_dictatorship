@@ -44,7 +44,22 @@ Play as Biruk. Hire goons. Defeat the Collins clones. Become the dictator. Or di
 - **Tank Enemies** (5% at start → 25% max): Higher health and damage, slower movement
 - **Progressive Difficulty**: Special enemy chances increase over 2 minutes
 - **Visual Distinction**: Different border colors and sizes for each enemy type
-- **Slower Spawning**: 5-second initial spawn rate for easier beginner experience
+- **Slower Spawning**: 3-second initial spawn rate for easier beginner experience
+
+### Enhanced Progressive Difficulty System
+- **Multi-Spawn Waves**: Enemy count increases based on level milestones
+  - Levels 1-9: 1 enemy per wave
+  - Levels 10-19: 2 enemies per wave  
+  - Levels 20-29: 3 enemies per wave
+  - Levels 30-39: 4 enemies per wave
+  - Levels 40+: 5 enemies per wave (maximum)
+- **Level-Based Enemy Scaling**: 
+  - Health: `30 + (player level × 5)` base health
+  - Damage: `10 + (player level × 2)` base damage
+  - Rewards: `10 + (player level × 2)` base value
+- **Time-Based Difficulty**: 10% enemy strength increase every 30 seconds
+- **Dynamic Spawn Rate**: Starts at 3 seconds, reduces by 30ms per level (minimum 1.5 seconds)
+- **Delayed Spawns**: 200ms delay between multiple enemies in same wave
 
 ### Combat System
 - **Shooting Mechanics**: Click to shoot bullets at enemies
@@ -64,14 +79,29 @@ Play as Biruk. Hire goons. Defeat the Collins clones. Become the dictator. Or di
 - **Strategic Defense**: Position goons for maximum coverage
 - **Visual Update**: Goons now use mafia_asset.jpg with transparent background
 
-### Difficulty Scaling System
-- **Level Milestones**: Every 10 levels, enemy spawn count increases
-  - Levels 1-9: 1 enemy per wave
-  - Levels 10-19: 2 enemies per wave  
-  - Levels 20-29: 3 enemies per wave
-  - And so on (+1 enemy each 10-level milestone, max 5)
-- **Time-Based Difficulty**: Enemies become 10% stronger every 30 seconds
-- **Slower Progression**: More gradual spawn rate increases (0.03 seconds per level)
+### Power-Up System
+- **Random Drops**: 8% chance for enemies to drop power-ups on defeat
+- **7 Power-Up Types**: Health, Weapon, Speed, Fire Rate, Critical, Lifesteal, Multishot
+- **Limited Lifetime**: Power-ups disappear after 15 seconds
+- **Proximity Collection**: Must walk over power-ups to collect them
+- **Visual Effects**: Glowing orbs with unique icons and collection animations
+- **Strategic Value**: Risk vs reward gameplay for collecting power-ups
+
+### Goon Progression
+- **Individual Leveling**: Each goon can be upgraded separately
+- **Goon Stats**: Damage, range, and fire rate improvements
+- **Strategic Placement**: Position goons for optimal battlefield coverage
+- **Upgrade Costs**: Scales with goon level
+
+### Upgrades Shop
+1. **Hire Goon** ($100+) - Adds automated turret to your family (max 10)
+2. **Better Weapon** ($250+) - Increases bullet damage (max 5 levels)
+3. **Speed Boost** ($150+) - Move faster around the battlefield (max 5 levels)
+4. **Fire Rate** ($200+) - Shoot bullets more rapidly (max 5 levels)
+5. **Health Boost** ($300+) - Increase maximum health (max 5 levels)
+6. **Critical Hits** ($400+) - 15% chance for double damage per level (max 3)
+7. **Lifesteal** ($350+) - Heal 10% of damage dealt per level (max 3)
+8. **Multi-shot** ($500+) - 5% chance per level for additional bullets in spread pattern (max 3)
 
 ### Audio Features
 - **Enemy Death Sounds**: Phil Collins "I Don't Care Anymore" plays on enemy defeat
@@ -91,22 +121,6 @@ Play as Biruk. Hire goons. Defeat the Collins clones. Become the dictator. Or di
 ### Easter Eggs
 - **_____**: Do you know the konami code? At the start enter it besides the last input in the 
 sequence to unlock a secret.
-
-### Upgrades Shop
-1. **Hire Goon** ($100+) - Adds automated turret to your family (max 10)
-2. **Better Weapon** ($250+) - Increases bullet damage (max 5 levels)
-3. **Speed Boost** ($150+) - Move faster around the battlefield (max 5 levels)
-4. **Fire Rate** ($200+) - Shoot bullets more rapidly (max 5 levels)
-5. **Health Boost** ($300+) - Increase maximum health (max 5 levels)
-6. **Critical Hits** ($400+) - 15% chance for double damage per level (max 3)
-7. **Lifesteal** ($350+) - Heal 10% of damage dealt per level (max 3)
-8. **Multi-shot** ($500+) - Shoot additional bullets in spread pattern (max 3)
-
-### Goon Progression
-- **Individual Leveling**: Each goon can be upgraded separately
-- **Goon Stats**: Damage, range, and fire rate improvements
-- **Strategic Placement**: Position goons for optimal battlefield coverage
-- **Upgrade Costs**: Scales with goon level
 
 ## Game Strategy
 
